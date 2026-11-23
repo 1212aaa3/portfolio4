@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>포트폴리오 | 간호학과 김하림</title>
+    <style>
+        /* 기본 초기화 및 변수 설정 */
+        :root {
+            --primary-color: #B85042;
+            --secondary-color: #E7E8D1;
+            --text-dark: #2C2C2C;
+            --text-light: #FFFFFF;
+            --bg-light: #FAFAFA;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+        }
+
+        /* 공통 레이아웃 */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        h2.section-title {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        h2.section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary-color);
+            margin: 12px auto 0;
+        }
+
+        /* 네비게이션 바 */
+        nav {
+            background-color: var(--primary-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 15px 0;
+            gap: 30px;
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: opacity 0.2s;
+        }
+
+        nav a:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+
+        /* 1. 헤더 (이름, 한 줄 소개) */
+        header {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        header p {
+            font-size: 1.25rem;
+            color: var(--secondary-color);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* 2. 소개 */
+        #about {
+            background-color: var(--secondary-color);
+        }
+
+        .about-content {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.1rem;
+            word-break: keep-all;
+        }
+
+        /* 3. 프로젝트 갤러리 */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: #FFFFFF;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease;
+            border: 1px solid #EAEAEA;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-img-wrapper {
+            width: 100%;
+            height: 220px;
+            background-color: #E0E0E0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .project-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .project-info {
+            padding: 24px;
+        }
+
+        .project-info h3 {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .project-info p {
+            font-size: 0.95rem;
+            color: #555555;
+            margin-bottom: 16px;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            background-color: var(--secondary-color);
+            color: var(--text-dark);
+            font-size: 0.8rem;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        /* 4. 스킬 */
+        #skills {
+            background-color: var(--secondary-color);
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .skill-badge {
+            background-color: #FFFFFF;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 1rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        /* 5. 연락처 */
+        #contact {
+            text-align: center;
+        }
+
+        .contact-desc {
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            text-decoration: none;
+            padding: 14px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+
+        .contact-btn:hover {
+            background-color: #9A3F33;
+        }
+
+        /* 푸터 */
+        footer {
+            background-color: #2C2C2C;
+            color: #AAAAAA;
+            text-align: center;
+            padding: 25px 20px;
+            font-size: 0.9rem;
+        }
+
+        /* 모바일 반응형 처리 */
+        @media (max-width: 600px) {
+            nav ul {
+                gap: 15px;
+                font-size: 0.85rem;
+            }
+
+            header {
+                padding: 70px 20px;
+            }
+
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            header p {
+                font-size: 1.05rem;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            h2.section-title {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 상단 메뉴 -->
+    <nav>
+        <ul>
+            <li><a href="#about">소개 및 소감</a></li>
+            <li><a href="#projects">과제 갤러리</a></li>
+            <li><a href="#skills">학습 영역</a></li>
+            <li><a href="#contact">정보</a></li>
+        </ul>
+    </nav>
+
+    <!-- 1. 헤더 -->
+    <header>
+        <div class="container">
+            <h1>김하림</h1>
+            <p>간호학과</p>
+        </div>
+    </header>
+
+    <!-- 2. 소개 -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">2학기 소감</h2>
+            <div class="about-content">
+                <p>
+                    이번 2학기를 보내면서 1학기보다 대학 생활에 조금 더 익숙해졌다는 것을 느꼈다. 하지만 학년이 올라갈수록 전공 수업의 내용이 어려워지고 외워야 할 내용도 많아져서 공부하는 데 어려움을 느끼기도 했다. 특히 의학용어와 인체의 구조 및 기능을 배우면서 비슷한 용어와 개념들이 헷갈릴 때가 많았지만, 반복해서 공부하고 모르는 부분을 질문하면서 조금씩 이해할 수 있었다.<br><br>
+                    또한 이번 학기에는 AI를 활용해 어려운 내용을 쉽게 설명받거나 이미지와 영상으로 공부 자료를 만들면서 나에게 맞는 공부 방법을 찾아가는 시간도 가졌다. 아직 부족한 부분도 많고 아쉬움도 남지만, 여러 수업과 과제를 하면서 새로운 것을 배우고 경험할 수 있었다. 이번 학기를 돌아보며 부족했던 점은 보완하고, 다음 학기에는 조금 더 계획적으로 공부하면서 전공 지식도 꾸준히 쌓아가고 싶다.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. 프로젝트 갤러리 -->
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">과제 갤러리</h2>
+            <div class="project-grid">
+                
+                <!-- 프로젝트 1 -->
+                <article class="project-card">
+                    <div class="project-img-wrapper">
+                        <img src="images/work1.png" alt="손 씻는 방법 영상 및 오디오 과제" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22220%22><rect width=%22400%22 height=%22220%22 fill=%22%23E7E8D1%22/><text x=%2250%%22 y=%2250%%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%23B85042%22 font-family=%22sans-serif%22 font-size=%2216%22>images/work1.png</text></svg>'">
+                    </div>
+                    <div class="project-info">
+                        <h3>손 씻는 방법 (건강이야기)</h3>
+                        <p>흐르는 물과 비누를 사용해 손바닥, 손등, 손가락 사이, 엄지손가락, 손톱 밑, 손목까지 30초 이상 꼼꼼하게 씻는 올바른 손 씻기 방법을 안내한 영상 및 오디오 콘텐츠입니다.</p>
+                        <div class="project-tags">
+                            <span class="tag">간호학과</span>
+                            <span class="tag">올바른 손 씻기</span>
+                            <span class="tag">AI 영상·오디오 제작</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 프로젝트 2 -->
+                <article class="project-card">
+                    <div class="project-img-wrapper">
+                        <img src="images/work2.png" alt="김하림의 버킷리스트 과제" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22220%22><rect width=%22400%22 height=%22220%22 fill=%22%23E7E8D1%22/><text x=%2250%%22 y=%2250%%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%23B85042%22 font-family=%22sans-serif%22 font-size=%2216%22>images/work2.png</text></svg>'">
+                    </div>
+                    <div class="project-info">
+                        <h3>김하림의 버킷리스트 (도전·성장·경험)</h3>
+                        <p>금발하기, 혼자 해외여행 가기, 토익 시험 보기, 친구와 3박4일 여행 가기, 봉사활동 100시간 채우기, 쇼핑 100만원치 해보기, 단발하기, 화장 컨설팅 받아보기, 번지점프 하기, 알바하기 등 10가지 목표를 담은 AI 이미지 활용 과제입니다.</p>
+                        <div class="project-tags">
+                            <span class="tag">버킷리스트</span>
+                            <span class="tag">도전·성장·경험</span>
+                            <span class="tag">AI 이미지 제작</span>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. 스킬 -->
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">학습 및 활용 영역</h2>
+            <div class="skills-container">
+                <span class="skill-badge">의학용어</span>
+                <span class="skill-badge">인체의 구조 및 기능</span>
+                <span class="skill-badge">AI 활용 학습</span>
+                <span class="skill-badge">이미지 학습 자료 제작</span>
+                <span class="skill-badge">영상·오디오 자료 제작</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. 연락처 -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">정보</h2>
+            <p class="contact-desc">간호학과 김하림</p>
+        </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 김하림 (간호학과). All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
